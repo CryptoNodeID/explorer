@@ -46,7 +46,7 @@ async function initParamsForKeplr() {
         average: 0.025,
         high: 0.03,
     }
-    const coinDecimals = chain.assets[0].exponent
+    const coinDecimals = chain.assets[0].denom_units.find(x => x.denom === chain.assets[0].symbol.toLowerCase())?.exponent || 6
     conf.value = JSON.stringify({
         chainId: chainid,
         chainName: chain.chainName,
@@ -65,22 +65,22 @@ async function initParamsForKeplr() {
             bech32PrefixConsPub: `${chain.bech32Prefix}valconspub`,
         },
         currencies: [
-            ...chain.assets.map(asset => {
+            chain.assets.map(a => {
                 return {
-                    coinDenom: asset.symbol,
-                    coinMinimalDenom: asset.base,
-                    coinDecimals: asset.exponent,
-                    coinGeckoId: asset.coingecko_id || 'unknown',
+                    coinDenom: a.symbol,
+                    coinMinimalDenom: a.base,
+                    coinDecimals: a.denom_units.find(x => x.denom === a.symbol.toLowerCase())?.exponent || 6,
+                    coinGeckoId: a.coingecko_id || 'unknown',
                 }
             }),
         ],
         feeCurrencies: [
-            ...chain.assets.map(asset => {
+            chain.assets.map(a => {
                 return {
-                    coinDenom: asset.symbol,
-                    coinMinimalDenom: asset.base,
-                    coinDecimals: asset.exponent,
-                    coinGeckoId: asset.coingecko_id || 'unknown',
+                    coinDenom: a.symbol,
+                    coinMinimalDenom: a.base,
+                    coinDecimals: a.denom_units.find(x => x.denom === a.symbol.toLowerCase())?.exponent || 6,
+                    coinGeckoId: a.coingecko_id || 'unknown',
                     gasPriceStep,
                 }
             }),
