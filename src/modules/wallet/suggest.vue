@@ -46,7 +46,7 @@ async function initParamsForKeplr() {
         average: 0.025,
         high: 0.03,
     }
-    const coinDecimals = chain.assets[0].denom_units.find(x => x.denom === chain.assets[0].symbol.toLowerCase())?.exponent || 6
+    const coinDecimals = chain.assets[0].denom_units.find(x => x.denom === chain.assets[0].symbol.toLowerCase())?.exponent || chain.assets[0].exponent
     conf.value = JSON.stringify({
         chainId: chainid,
         chainName: chain.chainName,
@@ -65,21 +65,25 @@ async function initParamsForKeplr() {
             bech32PrefixConsPub: `${chain.bech32Prefix}valconspub`,
         },
         currencies: [
-            {
-                coinDenom: chain.assets[0].symbol,
-                coinMinimalDenom: chain.assets[0].base,
-                coinDecimals,
-                coinGeckoId: chain.assets[0].coingecko_id || 'unknown',
-            },
+            ...chain.assets.map(asset => {
+                return {
+                    coinDenom: asset.symbol,
+                    coinMinimalDenom: asset.base,
+                    coinDecimals: asset.denom_units.find(x => x.denom === asset.symbol.toLowerCase())?.exponent || asset.exponent,
+                    coinGeckoId: asset.coingecko_id || 'unknown',
+                }
+            }),
         ],
         feeCurrencies: [
-            {
-                coinDenom: chain.assets[0].symbol,
-                coinMinimalDenom: chain.assets[0].base,
-                coinDecimals,
-                coinGeckoId: chain.assets[0].coingecko_id || 'unknown',
-                gasPriceStep,
-            },
+            ...chain.assets.map(asset => {
+                return {
+                    coinDenom: asset.symbol,
+                    coinMinimalDenom: asset.base,
+                    coinDecimals: asset.denom_units.find(x => x.denom === asset.symbol.toLowerCase())?.exponent || asset.exponent,
+                    coinGeckoId: asset.coingecko_id || 'unknown',
+                    gasPriceStep,
+                }
+            }),
         ],
         gasPriceStep,
         stakeCurrency: {
