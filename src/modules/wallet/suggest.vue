@@ -46,7 +46,7 @@ async function initParamsForKeplr() {
         average: 0.025,
         high: 0.03,
     }
-    const coinDecimals = chain.assets[0].denom_units.find(x => x.denom === chain.assets[0].symbol.toLowerCase())?.exponent || chain.assets[0].exponent
+    const coinDecimals = chain.assets[0].exponent
     conf.value = JSON.stringify({
         chainId: chainid,
         chainName: chain.chainName,
@@ -69,7 +69,7 @@ async function initParamsForKeplr() {
                 return {
                     coinDenom: asset.symbol,
                     coinMinimalDenom: asset.base,
-                    coinDecimals: asset.denom_units.find(x => x.denom === asset.symbol.toLowerCase())?.exponent || asset.exponent,
+                    coinDecimals: asset.exponent,
                     coinGeckoId: asset.coingecko_id || 'unknown',
                 }
             }),
@@ -79,7 +79,7 @@ async function initParamsForKeplr() {
                 return {
                     coinDenom: asset.symbol,
                     coinMinimalDenom: asset.base,
-                    coinDecimals: asset.denom_units.find(x => x.denom === asset.symbol.toLowerCase())?.exponent || asset.exponent,
+                    coinDecimals: asset.exponent,
                     coinGeckoId: asset.coingecko_id || 'unknown',
                     gasPriceStep,
                 }
