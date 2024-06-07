@@ -297,13 +297,13 @@ loadAvatars();
                                 class="uppercase"
                                 style="width: 3rem; position: relative"
                             >
-                            {{ $t('fstaking.rank') }}
+                            {{ ('fstaking.rank') }}
                             </th>
-                            <th scope="col" class="uppercase">{{ $t('fstaking.validator') }}</th>
-                            <th scope="col" class="text-right uppercase">{{ $t('fstaking.voting_power') }}</th>
-                            <th scope="col" class="text-right uppercase">{{ $t('fstaking.24h_changes') }}</th>
-                            <th scope="col" class="text-right uppercase">{{ $t('fstaking.commission') }}</th>
-                            <th scope="col" class="text-center uppercase">{{ $t('fstaking.actions') }}</th>
+                            <th scope="col" class="uppercase">{{ ('fstaking.validator') }}</th>
+                            <th scope="col" class="text-right uppercase">{{ ('fstaking.voting_power') }}</th>
+                            <th scope="col" class="text-right uppercase">{{ ('fstaking.24h_changes') }}</th>
+                            <th scope="col" class="text-right uppercase">{{ ('fstaking.commission') }}</th>
+                            <th scope="col" class="text-center uppercase">{{ ('fstaking.actions') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -429,7 +429,7 @@ loadAvatars();
                                     v-if="v.jailed"
                                     class="badge badge-error gap-2 text-white"
                                 >
-                                {{ $t('fstaking.jailed') }}
+                                {{ ('fstaking.jailed') }}
                                 </div>
                                 <label
                                     v-else
@@ -441,7 +441,7 @@ loadAvatars();
                                                 v.operator_address,
                                         })
                                     "
-                                    >{{ $t('account.btn_delegate') }}</label
+                                    >{{ ('account.btn_delegate') }}</label
                                 >
                             </td>
                         </tr>
