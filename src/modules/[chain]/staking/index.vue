@@ -287,7 +287,8 @@ loadAvatars();
         </div>
     </div>
 
-    <div class="bg-base-100 px-4 pt-3 pb-4 rounded shadow">
+    <div>
+        <div class="bg-base-100 px-4 pt-3 pb-4 rounded shadow">
             <div class="overflow-x-auto">
                 <table class="table staking-table w-full">
                     <thead>
@@ -297,18 +298,18 @@ loadAvatars();
                                 class="uppercase"
                                 style="width: 3rem; position: relative"
                             >
-                            {{ ('fstaking.rank') }}
+                            {{ $t('staking.rank') }}    
                             </th>
-                            <th scope="col" class="uppercase">{{ ('fstaking.validator') }}</th>
-                            <th scope="col" class="text-right uppercase">{{ ('fstaking.voting_power') }}</th>
-                            <th scope="col" class="text-right uppercase">{{ ('fstaking.24h_changes') }}</th>
-                            <th scope="col" class="text-right uppercase">{{ ('fstaking.commission') }}</th>
-                            <th scope="col" class="text-center uppercase">{{ ('fstaking.actions') }}</th>
+                            <th scope="col" class="uppercase">{{ $t('staking.validator') }}</th>
+                            <th scope="col" class="text-right uppercase">{{ $t('staking.voting_power') }}</th>
+                            <th scope="col" class="text-right uppercase">{{ $t('staking.24h_changes') }}</th>
+                            <th scope="col" class="text-right uppercase">{{ $t('staking.commission') }}</th>
+                            <th scope="col" class="text-center uppercase">{{ $t('staking.actions') }}</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr
-                            v-for="({v, rank, logo}, i) in list"
+                            v-for="({v, rank, logo}, i) in flist"
                             :key="v.operator_address"
                             class="hover:bg-gray-100 dark:hover:bg-[#384059]"
                         >
@@ -429,7 +430,7 @@ loadAvatars();
                                     v-if="v.jailed"
                                     class="badge badge-error gap-2 text-white"
                                 >
-                                {{ ('fstaking.jailed') }}
+                                {{ $t('staking.jailed') }}
                                 </div>
                                 <label
                                     v-else
@@ -441,7 +442,7 @@ loadAvatars();
                                                 v.operator_address,
                                         })
                                     "
-                                    >{{ ('account.btn_delegate') }}</label
+                                    >{{ $t('account.btn_delegate') }}</label
                                 >
                             </td>
                         </tr>
@@ -472,6 +473,7 @@ loadAvatars();
                 </div>
             </div>
         </div>
+    </div>
 
     <div>
         <div class="flex items-center justify-between py-1">
