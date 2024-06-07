@@ -291,8 +291,7 @@ loadAvatars();
         <div class="flex items-center justify-between py-1">
             <div class="tabs tabs-boxed bg-transparent">
                 <a
-                    class="tab-active"
-                    @click="true"
+                    class="tab text-gray-400 tab-active "
                     >{{ $t('staking.popular') }}</a
                 >
             </div>
@@ -463,8 +462,6 @@ loadAvatars();
                     </tbody>
                 </table>
             </div>
-
-            <div class="divider"></div>
         </div>
     </div>
 
