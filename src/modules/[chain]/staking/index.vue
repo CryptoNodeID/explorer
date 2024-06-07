@@ -292,7 +292,7 @@ loadAvatars();
             <div class="tabs tabs-boxed bg-transparent">
                 <a
                     class="tab text-gray-400 tab-active "
-                    >{{ $t('staking.popular') }}</a
+                    >{{ $t('staking.our_validators') }}</a
                 >
             </div>
 
