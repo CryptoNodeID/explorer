@@ -15,6 +15,7 @@ import { formatSeconds}  from '@/libs/utils'
 import { diff } from 'semver';
 
 const staking = useStakingStore();
+const fstaking = useStakingStore();
 const base = useBaseStore();
 const format = useFormatter();
 const dialog = useTxDialog();
@@ -148,9 +149,20 @@ const list = computed(() => {
                 .filter(x => isFeatured(endpoint, x.description))
                 .map((x, i) => ({v: x, rank: 'primary', logo: logo(x.description.identity)}));
         }
-        return []        
+        return []
     }
     return unbondList.value.map((x, i) => ({v: x, rank: 'primary', logo: logo(x.description.identity)}));
+});
+
+const flist = computed(() => {
+    const endpoint = chainStore.current?.endpoints?.rest?.map(x => x.provider)
+    if(endpoint) {
+        endpoint.push('ping')
+        return fstaking.validators
+            .filter(x => isFeatured(endpoint, x.description))
+            .map((x, i) => ({v: x, rank: 'primary', logo: logo(x.description.identity)}));
+    }
+    return []
 });
 
 const fetchAvatar = (identity: string) => {
@@ -272,8 +284,194 @@ loadAvatars();
             <div class="font-bold">{{ format.percent(slashing.slash_fraction_downtime) }}</div>
             <div class="text-xs">{{ $t('staking.downtime_slashing') }}</div>
             </span>
-        </div>  
+        </div>
     </div>
+
+    <div class="bg-base-100 px-4 pt-3 pb-4 rounded shadow">
+            <div class="overflow-x-auto">
+                <table class="table staking-table w-full">
+                    <thead>
+                        <tr>
+                            <th
+                                scope="col"
+                                class="uppercase"
+                                style="width: 3rem; position: relative"
+                            >
+                            {{ $t('fstaking.rank') }}
+                            </th>
+                            <th scope="col" class="uppercase">{{ $t('fstaking.validator') }}</th>
+                            <th scope="col" class="text-right uppercase">{{ $t('fstaking.voting_power') }}</th>
+                            <th scope="col" class="text-right uppercase">{{ $t('fstaking.24h_changes') }}</th>
+                            <th scope="col" class="text-right uppercase">{{ $t('fstaking.commission') }}</th>
+                            <th scope="col" class="text-center uppercase">{{ $t('fstaking.actions') }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            v-for="({v, rank, logo}, i) in list"
+                            :key="v.operator_address"
+                            class="hover:bg-gray-100 dark:hover:bg-[#384059]"
+                        >
+                            <!-- 👉 rank -->
+                            <td>
+                                <div
+                                    class="text-xs truncate relative px-2 py-1 rounded-full w-fit"
+                                    :class="`text-${rank}`"
+                                >
+                                    <span
+                                        class="inset-x-0 inset-y-0 opacity-10 absolute"
+                                        :class="`bg-${rank}`"
+                                    ></span>
+                                    {{ i + 1 }}
+                                </div>
+                            </td>
+                            <!-- 👉 Validator -->
+                            <td>
+                                <div
+                                    class="flex items-center overflow-hidden"
+                                    style="max-width: 300px"
+                                >
+                                    <div
+                                        class="avatar mr-4 relative w-8 h-8 rounded-full"
+                                    >
+                                        <div
+                                            class="w-8 h-8 rounded-full bg-gray-400 absolute opacity-10"
+                                        ></div>
+                                        <div class="w-8 h-8 rounded-full">
+                                            <img
+                                                v-if="logo"
+                                                :src="logo"
+                                                class="object-contain"
+                                                @error="
+                                                    (e) => {
+                                                        const identity = v.description?.identity;
+                                                        if (identity) loadAvatar(identity);
+                                                    }
+                                                "
+                                            />
+                                            <Icon
+                                                v-else
+                                                class="text-3xl"
+                                                :icon="`mdi-help-circle-outline`"
+                                            />
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="flex flex-col">
+                                        <span class="text-sm text-primary dark:invert whitespace-nowrap overflow-hidden">
+                                            <RouterLink
+                                                :to="{
+                                                    name: 'chain-staking-validator',
+                                                    params: {
+                                                        validator:
+                                                            v.operator_address,
+                                                    },
+                                                }"
+                                                class="font-weight-medium"
+                                            >
+                                                {{ v.description?.moniker }}
+                                            </RouterLink>
+                                        </span>
+                                        <span class="text-xs">{{
+                                            v.description?.website ||
+                                            v.description?.identity ||
+                                            '-'
+                                        }}</span>
+                                    </div>
+                                </div>
+                            </td>
+
+                            <!-- 👉 Voting Power -->
+                            <td class="text-right">
+                                <div class="flex flex-col">
+                                    <h6 class="text-sm font-weight-medium whitespace-nowrap ">
+                                        {{
+                                            format.formatToken(
+                                                {
+                                                    amount: parseInt(
+                                                        v.tokens
+                                                    ).toString(),
+                                                    denom: staking.params
+                                                        .bond_denom,
+                                                },
+                                                true,
+                                                '0,0'
+                                            )
+                                        }}
+                                    </h6>
+                                    <span class="text-xs">{{
+                                        format.calculatePercent(
+                                            v.delegator_shares,
+                                            staking.totalPower
+                                        )
+                                    }}</span>
+                                </div>
+                            </td>
+                            <!-- 👉 24h Changes -->
+                            <td
+                                class="text-right text-xs"
+                                :class="change24Color(v)"
+                            >
+                                {{ change24Text(v) }}
+                            </td>
+                            <!-- 👉 commission -->
+                            <td class="text-right text-xs">
+                                {{
+                                    format.formatCommissionRate(
+                                        v.commission?.commission_rates?.rate
+                                    )
+                                }}
+                            </td>
+                            <!-- 👉 Action -->
+                            <td class="text-center">
+                                <div
+                                    v-if="v.jailed"
+                                    class="badge badge-error gap-2 text-white"
+                                >
+                                {{ $t('fstaking.jailed') }}
+                                </div>
+                                <label
+                                    v-else
+                                    for="delegate"
+                                    class="btn btn-xs btn-primary rounded-sm capitalize"
+                                    @click="
+                                        dialog.open('delegate', {
+                                            validator_address:
+                                                v.operator_address,
+                                        })
+                                    "
+                                    >{{ $t('account.btn_delegate') }}</label
+                                >
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="divider"></div>
+            <div class="flex flex-row items-center">
+                <div
+                    class="text-xs truncate relative py-2 px-4 rounded-md w-fit text-error mr-2"
+                >
+                    <span
+                        class="inset-x-0 inset-y-0 opacity-10 absolute bg-error"
+                    ></span>
+                    {{ $t('staking.top') }} 33%
+                </div>
+                <div
+                    class="text-xs truncate relative py-2 px-4 rounded-md w-fit text-warning"
+                >
+                    <span
+                        class="inset-x-0 inset-y-0 opacity-10 absolute bg-warning"
+                    ></span>
+                    {{ $t('staking.top') }} 67%
+                </div>
+                <div class="text-xs hidden md:!block pl-2">
+                    {{ $t('staking.description') }}
+                </div>
+            </div>
+        </div>
 
     <div>
         <div class="flex items-center justify-between py-1">
