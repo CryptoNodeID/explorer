@@ -288,6 +288,19 @@ loadAvatars();
     </div>
 
     <div>
+        <div class="flex items-center justify-between py-1">
+            <div class="tabs tabs-boxed bg-transparent">
+                <a
+                    class="tab-active"
+                    >{{ $t('staking.popular') }}</a
+                >
+            </div>
+
+            <div class="text-lg font-semibold">
+                {{ flist.length }}
+            </div>
+        </div>
+
         <div class="bg-base-100 px-4 pt-3 pb-4 rounded shadow">
             <div class="overflow-x-auto">
                 <table class="table staking-table w-full">
@@ -451,39 +464,12 @@ loadAvatars();
             </div>
 
             <div class="divider"></div>
-            <div class="flex flex-row items-center">
-                <div
-                    class="text-xs truncate relative py-2 px-4 rounded-md w-fit text-error mr-2"
-                >
-                    <span
-                        class="inset-x-0 inset-y-0 opacity-10 absolute bg-error"
-                    ></span>
-                    {{ $t('staking.top') }} 33%
-                </div>
-                <div
-                    class="text-xs truncate relative py-2 px-4 rounded-md w-fit text-warning"
-                >
-                    <span
-                        class="inset-x-0 inset-y-0 opacity-10 absolute bg-warning"
-                    ></span>
-                    {{ $t('staking.top') }} 67%
-                </div>
-                <div class="text-xs hidden md:!block pl-2">
-                    {{ $t('staking.description') }}
-                </div>
-            </div>
         </div>
     </div>
 
     <div>
         <div class="flex items-center justify-between py-1">
             <div class="tabs tabs-boxed bg-transparent">
-                <a
-                    class="tab text-gray-400"
-                    :class="{ 'tab-active': tab === 'featured' }"
-                    @click="tab = 'featured'"
-                    >{{ $t('staking.popular') }}</a
-                >
                 <a
                     class="tab text-gray-400"
                     :class="{ 'tab-active': tab === 'active' }"
