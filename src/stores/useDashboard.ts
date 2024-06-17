@@ -85,7 +85,13 @@ export interface ChainConfig {
     low: number,
     average: number,
     high: number,
-  },
+  },  
+  faucet?: {
+    amount: string,
+    ip_limit: number,
+    address_limit: number,
+    fees: string
+  };
 }
 
 export interface LocalConfig {
@@ -93,6 +99,7 @@ export interface LocalConfig {
   consensus_prefix?: string;
   alias: string;
   api: string[] | Endpoint[];
+  grpc: Endpoint[];
   provider_chain: {
     api: string[] | Endpoint[]
   }
@@ -118,6 +125,12 @@ export interface LocalConfig {
     high: number,
   },
   keplr_features: string[],
+  faucet?: {
+    amount: string,
+    ip_limit: number,
+    address_limit: number,
+    fees: string
+  };
 }
 
 function apiConverter(api: any[]) {
@@ -138,19 +151,21 @@ function apiConverter(api: any[]) {
 
 export function fromLocal(lc: LocalConfig): ChainConfig {
   const conf = {} as ChainConfig;
-  conf.assets = lc.assets.map((x) => ({
-    name: x.base,
-    base: x.base,
-    display: x.symbol,
-    symbol: x.symbol,
-    logo_URIs: { svg: x.logo },
-    coingecko_id: x.coingecko_id,
-    exponent: x.exponent,
-    denom_units: [
-      { denom: x.base, exponent: 0 },
-      { denom: x.symbol.toLowerCase(), exponent: Number(x.exponent) },
-    ],
-  }));
+  if(lc.assets && Array.isArray(lc.assets)) {
+    conf.assets = lc.assets.map((x) => ({
+      name: x.base,
+      base: x.base,
+      display: x.symbol,
+      symbol: x.symbol,
+      logo_URIs: { svg: x.logo },
+      coingecko_id: x.coingecko_id,
+      exponent: x.exponent,
+      denom_units: [
+        { denom: x.base, exponent: 0 },
+        { denom: x.symbol.toLowerCase(), exponent: Number(x.exponent) },
+      ],
+    }));
+  }
   conf.versions = {
     cosmosSdk: lc.sdk_version
   }
@@ -162,6 +177,7 @@ export function fromLocal(lc: LocalConfig): ChainConfig {
   conf.endpoints = {
     rest: apiConverter(lc.api),
     rpc: apiConverter(lc.rpc),
+    grpc: apiConverter(lc.grpc),
   };
   if(lc.provider_chain) {
     conf.providerChain = {
@@ -169,10 +185,11 @@ export function fromLocal(lc: LocalConfig): ChainConfig {
     }
   }
   conf.features = lc.features
-  conf.logo = lc.logo;
+  conf.logo = lc.logo.startsWith('http') ? lc.logo : `https://ping.pub${lc.logo}`;
   conf.keplrFeatures = lc.keplr_features;
   conf.keplrPriceStep = lc.keplr_price_step;
   conf.themeColor = lc.theme_color;
+  conf.faucet = lc.faucet;
   return conf;
 }
 
@@ -288,7 +305,7 @@ export const useDashboard = defineStore('dashboard', {
       const keys = Object.keys(this.chains) // load all blockchain
       // Object.keys(this.favoriteMap) //only load favorite once it has too many chains
       keys.forEach(k => {
-        if(this.chains[k]) this.chains[k].assets.forEach(a => {
+        if(Array.isArray(this.chains[k]?.assets)) this.chains[k].assets.forEach(a => {
           if(a.coingecko_id !== undefined && a.coingecko_id.length > 0) {
             coinIds.push(a.coingecko_id)
             a.denom_units.forEach(u => {
