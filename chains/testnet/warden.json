@@ -1,0 +1,22 @@
+{
+    "chain_name": "warden",
+    "registry_name": "warden",
+    "api": [
+        {"provider": "CryptoNodeID", "address": "https://warden-testnet-api.cryptonode.id"}
+    ], 
+    "rpc": [
+        {"provider": "CryptoNodeID", "address": "https://warden-testnet-rpc.cryptonode.id"}
+    ],
+    "sdk_version": "0.47.4",
+    "coin_type": "118",
+    "min_tx_fee": "500",
+    "addr_prefix": "warden",
+    "logo": "/logos/warden.png",
+    "assets": [{
+        "base": "uward",
+        "symbol": "WARD",
+        "exponent": "6", 
+        "coingecko_id": "",
+        "logo": "/logos/warden.png"
+    }]
+}

@@ -23,11 +23,11 @@
     "links": "Links"
   },
   "pages": {
-    "title": "Ping Dashboard",
+    "title": "Crypto Node ID",
     "title_all": "404",
     "tag": "Beta",
     "tag_all": "Page Not Found",
-    "slogan": "Ping Dashboard is not just an explorer but also a wallet and more ... 🛠",
+    "slogan": "Crypto Node ID is not just an explorer but also a wallet and more ... 🛠",
     "description": "Cosmos Ecosystem Blockchains 🚀",
     "search_placeholder": "Search Chain",
     "description_all": "We couldn't find the page you are looking for.",
@@ -194,6 +194,7 @@
     "double_sign_slashing": "Double Sign Slashing",
     "downtime_slashing": "Downtime Slashing",
     "popular": "Popular",
+    "our_validators": "Our Validators",
     "active": "Active",
     "inactive": "Inactive",
     "rank": "Rank",
