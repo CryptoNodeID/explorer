@@ -66,21 +66,25 @@ async function initParamsForKeplr() {
             bech32PrefixConsPub: `${chain.bech32Prefix}valconspub`,
         },
         currencies: [
-            {
-                coinDenom: chain.assets[0].symbol,
-                coinMinimalDenom: chain.assets[0].base,
-                coinDecimals,
-                coinGeckoId: chain.assets[0].coingecko_id || 'unknown',
-            },
+            chain.assets.map(a => {
+                return {
+                    coinDenom: a.symbol,
+                    coinMinimalDenom: a.base,
+                    coinDecimals: a.denom_units.find(x => x.denom === a.symbol.toLowerCase())?.exponent || 6,
+                    coinGeckoId: a.coingecko_id || 'unknown',
+                }
+            }),
         ],
         feeCurrencies: [
-            {
-                coinDenom: chain.assets[0].symbol,
-                coinMinimalDenom: chain.assets[0].base,
-                coinDecimals,
-                coinGeckoId: chain.assets[0].coingecko_id || 'unknown',
-                gasPriceStep,
-            },
+            chain.assets.map(a => {
+                return {
+                    coinDenom: a.symbol,
+                    coinMinimalDenom: a.base,
+                    coinDecimals: a.denom_units.find(x => x.denom === a.symbol.toLowerCase())?.exponent || 6,
+                    coinGeckoId: a.coingecko_id || 'unknown',
+                    gasPriceStep,
+                }
+            }),
         ],
         gasPriceStep,
         stakeCurrency: {

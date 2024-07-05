@@ -2,10 +2,10 @@
     "chain_name": "crossfi",
     "registry_name": "crossfi",
     "api": [
-        {"provider": "CryptoNodeID", "address": "https://crossfi-testnet-api.cryptonode.id"}
+        {"provider": "CryptoNodeID", "address": "https://crossfi-mainnet-api.cryptonode.id"}
     ],
     "rpc": [
-        {"provider": "CryptoNodeID", "address": "https://crossfi-testnet-rpc.cryptonode.id"}
+        {"provider": "CryptoNodeID", "address": "https://crossfi-mainnet-rpc.cryptonode.id"}
     ],
     "sdk_version": "0.47.6",
     "keplr_features": ["eth-address-gen", "eth-key-sign"],
@@ -19,13 +19,5 @@
         "exponent": "18",
         "coingecko_id": "crossfi-2", 
         "logo": "/logos/crossfi.png"
-    },
-    {
-        "base": "xfi",
-        "symbol": "XFI",
-        "exponent": "18",
-        "coingecko_id": "crossfi-2", 
-        "logo": "/logos/crossfi.png"
-    }
-]
+    }]
 }

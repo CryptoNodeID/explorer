@@ -1,0 +1,22 @@
+{
+    "chain_name": "airchain",
+    "registry_name": "Airchain",
+    "api": [
+        {"provider": "CryptoNodeID", "address": "https://airchain-testnet-api.cryptonode.id"}
+    ], 
+    "rpc": [
+        {"provider": "CryptoNodeID", "address": "https://airchain-testnet-rpc.cryptonode.id"}
+    ],
+    "sdk_version": "0.47.4",
+    "coin_type": "60",
+    "min_tx_fee": "100",
+    "addr_prefix": "air",
+    "logo": "/logos/airchain.png",
+    "assets": [{
+        "base": "amf",
+        "symbol": "AMF",
+        "exponent": "6", 
+        "coingecko_id": "",
+        "logo": "/logos/airchain.png"
+    }]
+}
