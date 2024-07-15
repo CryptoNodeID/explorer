@@ -19,5 +19,12 @@
         "exponent": "18",
         "coingecko_id": "crossfi-2", 
         "logo": "/logos/crossfi.png"
+    },
+    {
+        "base": "xfi",
+        "symbol": "XFI",
+        "exponent": "18",
+        "coingecko_id": "crossfi-2", 
+        "logo": "/logos/crossfi.png"
     }]
 }
