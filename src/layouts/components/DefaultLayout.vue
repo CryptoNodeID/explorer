@@ -43,7 +43,7 @@ const changeOpen = (index: Number) => {
     sidebarOpen.value = !sidebarOpen.value;
   }
 };
-const showDiscord = window.location.host.search('ping.pub') > -1;
+const showDiscord = window.location.host.search('cryptonode.id') > -1;
 
 function isNavGroup(nav: VerticalNavItems | any): nav is NavGroup {
    return (<NavGroup>nav).children !== undefined;
@@ -294,6 +294,26 @@ dayjs()
           </div>
         </a>
         <div class="px-4 text-sm pt-2 text-gray-400 pb-2 uppercase">{{ $t('module.links') }}</div>
+        <a v-if="index === 0 && dashboard.networkType === NetworkType.Testnet"
+          href="https://mainnet.cryptonode.id"
+          target="_blank"
+          class="py-2 px-4 flex items-center rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-[#373f59]">
+          <div
+            class="text-base capitalize flex-1 text-gray-600 dark:text-gray-200"
+          >
+            Mainnet
+          </div>
+        </a>
+        <a v-if="index === 0 && dashboard.networkType === NetworkType.Mainnet"
+          href="https://testnet.cryptonode.id"
+          target="_blank"
+          class="py-2 px-4 flex items-center rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-[#373f59]">
+          <div
+            class="text-base capitalize flex-1 text-gray-600 dark:text-gray-200"
+          >
+            Testnet
+          </div>
+        </a>
         <a
           href="https://t.me/CryptoNodeID"
           target="_blank"
@@ -308,7 +328,7 @@ dayjs()
         </a>
         <a
           v-if="showDiscord"
-          href="https://discord.com/invite/CmjYVSr6GW"
+          href="https://dsc.gg/cryptonodeid"
           target="_blank"
           class="py-2 px-4 flex items-center rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-[#373f59]"
         >
