@@ -107,7 +107,7 @@ dayjs()
             'collapse-close': index === 0 && !sidebarOpen,
           }"
         >
-        <a v-if="index === 0 && dashboard.networkType === NetworkType.Testnet"
+        <a v-if="index > 0 && dashboard.networkType === NetworkType.Testnet"
           href="https://mainnet.cryptonode.id"
           target="_blank"
           class="py-2 px-4 flex items-center rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-[#373f59]">
@@ -121,7 +121,7 @@ dayjs()
             Mainnet
           </div>
         </a>
-        <a v-if="index === 0 && dashboard.networkType === NetworkType.Mainnet"
+        <a v-if="index > 0 && dashboard.networkType === NetworkType.Mainnet"
           href="https://testnet.cryptonode.id"
           target="_blank"
           class="py-2 px-4 flex items-center rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-[#373f59]">
