@@ -92,6 +92,34 @@ dayjs()
           <Icon icon="mdi-close" class="text-2xl" />
         </div>
       </div>
+      <a v-if="dashboard.networkType === NetworkType.Testnet"
+          href="https://mainnet.cryptonode.id"
+          target="_blank"
+          class="py-2 px-4 flex items-center cursor-pointer rounded-lg hover:bg-gray-100 dark:hover:bg-[#373f59]">
+          <img
+            src="/logo.svg"
+            class="w-6 h-6 rounded-full mr-3"
+          />
+          <div
+            class="text-base capitalize flex-1 text-gray-600 dark:text-gray-200"
+          >
+            Mainnet
+          </div>
+        </a>
+        <a v-if="dashboard.networkType === NetworkType.Mainnet"
+          href="https://testnet.cryptonode.id"
+          target="_blank"
+          class="py-2 px-4 flex items-center cursor-pointer rounded-lg hover:bg-gray-100 dark:hover:bg-[#373f59]">
+          <img
+            src="/logo.svg"
+            class="w-6 h-6 rounded-full mr-3"
+          />
+          <div
+            class="text-base capitalize flex-1 text-gray-600 dark:text-gray-200"
+          >
+            Testnet
+          </div>
+        </a>
       <div
         v-for="(item, index) of blockchain.computedChainMenu"
         :key="index"
@@ -107,34 +135,6 @@ dayjs()
             'collapse-close': index === 0 && !sidebarOpen,
           }"
         >
-        <a v-if="index > 0 && dashboard.networkType === NetworkType.Testnet"
-          href="https://mainnet.cryptonode.id"
-          target="_blank"
-          class="py-2 px-4 flex items-center cursor-pointer rounded-lg hover:bg-gray-100 dark:hover:bg-[#373f59]">
-          <img
-            src="/logo.svg"
-            class="w-6 h-6 rounded-full mr-3"
-          />
-          <div
-            class="text-base capitalize flex-1 text-gray-600 dark:text-gray-200"
-          >
-            Mainnet
-          </div>
-        </a>
-        <a v-if="index > 0 && dashboard.networkType === NetworkType.Mainnet"
-          href="https://testnet.cryptonode.id"
-          target="_blank"
-          class="py-2 px-4 flex items-center cursor-pointer rounded-lg hover:bg-gray-100 dark:hover:bg-[#373f59]">
-          <img
-            src="/logo.svg"
-            class="w-6 h-6 rounded-full mr-3"
-          />
-          <div
-            class="text-base capitalize flex-1 text-gray-600 dark:text-gray-200"
-          >
-            Testnet
-          </div>
-        </a>
           <input
             v-if="index > 0"
             type="checkbox"
