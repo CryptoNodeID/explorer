@@ -110,7 +110,7 @@ dayjs()
         <a v-if="index > 0 && dashboard.networkType === NetworkType.Testnet"
           href="https://mainnet.cryptonode.id"
           target="_blank"
-          class="py-2 px-4 flex items-center rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-[#373f59]">
+          class="py-2 px-4 flex items-center cursor-pointer rounded-lg hover:bg-gray-100 dark:hover:bg-[#373f59]">
           <img
             src="/logo.svg"
             class="w-6 h-6 rounded-full mr-3"
@@ -124,7 +124,7 @@ dayjs()
         <a v-if="index > 0 && dashboard.networkType === NetworkType.Mainnet"
           href="https://testnet.cryptonode.id"
           target="_blank"
-          class="py-2 px-4 flex items-center rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-[#373f59]">
+          class="py-2 px-4 flex items-center cursor-pointer rounded-lg hover:bg-gray-100 dark:hover:bg-[#373f59]">
           <img
             src="/logo.svg"
             class="w-6 h-6 rounded-full mr-3"
