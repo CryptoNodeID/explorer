@@ -107,6 +107,34 @@ dayjs()
             'collapse-close': index === 0 && !sidebarOpen,
           }"
         >
+        <a v-if="dashboard.networkType === NetworkType.Testnet"
+          href="https://mainnet.cryptonode.id"
+          target="_blank"
+          class="py-2 px-4 flex items-center rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-[#373f59]">
+          <img
+            src="/logo.svg"
+            class="w-6 h-6 rounded-full mr-3"
+          />
+          <div
+            class="text-base capitalize flex-1 text-gray-600 dark:text-gray-200"
+          >
+            Mainnet
+          </div>
+        </a>
+        <a v-if="dashboard.networkType === NetworkType.Mainnet"
+          href="https://testnet.cryptonode.id"
+          target="_blank"
+          class="py-2 px-4 flex items-center rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-[#373f59]">
+          <img
+            src="/logo.svg"
+            class="w-6 h-6 rounded-full mr-3"
+          />
+          <div
+            class="text-base capitalize flex-1 text-gray-600 dark:text-gray-200"
+          >
+            Testnet
+          </div>
+        </a>
           <input
             v-if="index > 0"
             type="checkbox"
@@ -294,26 +322,6 @@ dayjs()
           </div>
         </a>
         <div class="px-4 text-sm pt-2 text-gray-400 pb-2 uppercase">{{ $t('module.links') }}</div>
-        <a v-if="dashboard.networkType === NetworkType.Testnet"
-          href="https://mainnet.cryptonode.id"
-          target="_blank"
-          class="py-2 px-4 flex items-center rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-[#373f59]">
-          <div
-            class="text-base capitalize flex-1 text-gray-600 dark:text-gray-200"
-          >
-            Mainnet
-          </div>
-        </a>
-        <a v-if="dashboard.networkType === NetworkType.Mainnet"
-          href="https://testnet.cryptonode.id"
-          target="_blank"
-          class="py-2 px-4 flex items-center rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-[#373f59]">
-          <div
-            class="text-base capitalize flex-1 text-gray-600 dark:text-gray-200"
-          >
-            Testnet
-          </div>
-        </a>
         <a
           href="https://t.me/CryptoNodeID"
           target="_blank"
