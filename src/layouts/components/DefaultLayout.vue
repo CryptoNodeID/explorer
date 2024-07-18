@@ -294,7 +294,7 @@ dayjs()
           </div>
         </a>
         <div class="px-4 text-sm pt-2 text-gray-400 pb-2 uppercase">{{ $t('module.links') }}</div>
-        <a v-if="index === 0 && dashboard.networkType === NetworkType.Testnet"
+        <a v-if="dashboard.networkType === NetworkType.Testnet"
           href="https://mainnet.cryptonode.id"
           target="_blank"
           class="py-2 px-4 flex items-center rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-[#373f59]">
@@ -304,7 +304,7 @@ dayjs()
             Mainnet
           </div>
         </a>
-        <a v-if="index === 0 && dashboard.networkType === NetworkType.Mainnet"
+        <a v-if="dashboard.networkType === NetworkType.Mainnet"
           href="https://testnet.cryptonode.id"
           target="_blank"
           class="py-2 px-4 flex items-center rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-[#373f59]">
