@@ -81,8 +81,11 @@ dayjs()
       <div class="flex justify-between mt-1 pl-4 py-4 mb-1">
         <RouterLink to="/" class="flex items-center">
           <img class="w-10 h-10" src="../../assets/logo.svg" />
-          <h1 class="flex-1 ml-3 text-2xl font-semibold dark:text-white">
-            CryptoNodeID
+          <h1 v-if="dashboard.networkType === NetworkType.Testnet" class="flex-1 ml-3 text-2xl font-semibold dark:text-white">
+            CryptoNodeID Testnet
+          </h1>
+          <h1 v-if="dashboard.networkType === NetworkType.Mainnet" class="flex-1 ml-3 text-2xl font-semibold dark:text-white">
+            CryptoNodeID Mainnet
           </h1>
         </RouterLink>
         <div
@@ -103,7 +106,7 @@ dayjs()
           <div
             class="text-base capitalize flex-1 text-gray-600 dark:text-gray-200"
           >
-            Mainnet
+            >> go to Mainnet
           </div>
         </a>
         <a v-if="dashboard.networkType === NetworkType.Mainnet"
@@ -117,7 +120,7 @@ dayjs()
           <div
             class="text-base capitalize flex-1 text-gray-600 dark:text-gray-200"
           >
-            Testnet
+            >> go to Testnet
           </div>
         </a>
       <div
