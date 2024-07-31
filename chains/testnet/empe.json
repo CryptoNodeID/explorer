@@ -18,5 +18,11 @@
         "exponent": "6", 
         "coingecko_id": "",
         "logo": "/logos/empe.png"
-    }]
+    }],
+    "faucet": {
+        "amount": "10000000uempe",
+        "ip_limit": "1",
+        "address_limit": "2",
+        "fees": "1uempe"
+    }
 }
