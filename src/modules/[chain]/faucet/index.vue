@@ -150,7 +150,7 @@ onMounted(() => {
                 </div>
                 <div v-else-if="ret.status === 'ok'">
                     <h3 class="font-bold text-green-500"> Token Sent! </h3>
-                    <div class=" text-center mt-4"><RouterLink :to="`/${chainStore.chainName}/tx/${ret.result.txhash}`">View Transaction</RouterLink></div>
+                    <div class=" text-center mt-4"><RouterLink :to="`/${chainStore.chainName}/tx/${ret.result.transactionHash}`">View Transaction</RouterLink></div>
                 </div>
                 <h3 v-else class="font-bold text-lg"> Processing <span class="loading loading-bars loading-sm"></span> </h3>
  
