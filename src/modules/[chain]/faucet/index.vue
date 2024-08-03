@@ -43,7 +43,7 @@ const validAddress = computed(() => {
 });
 
 const faucetUrl = computed(() => {
-    return `https://faucet.cnd.biz.id/${chainStore.current?.chainName}`;
+    return `https://faucet.cryptonode.id/${chainStore.current?.chainName}`;
 });
 
 
