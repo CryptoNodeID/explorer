@@ -1,11 +1,11 @@
 {
-    "chain_name": "empe",
-    "registry_name": "empe",
+    "chain_name": "empeiria",
+    "registry_name": "empeiria",
     "api": [
-        {"provider": "CryptoNodeID", "address": "https://empe-testnet-api.cryptonode.id"}
-    ], 
+        {"provider": "CryptoNodeID", "address": "https://empeiria-testnet-api.cryptonode.id"}
+    ],
     "rpc": [
-        {"provider": "CryptoNodeID", "address": "https://empe-testnet-rpc.cryptonode.id"}
+        {"provider": "CryptoNodeID", "address": "https://empeiria-testnet-rpc.cryptonode.id"}
     ],
     "sdk_version": "0.47.4",
     "coin_type": "118",
