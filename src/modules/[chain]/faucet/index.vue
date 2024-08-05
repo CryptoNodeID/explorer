@@ -107,6 +107,7 @@ onMounted(() => {
                 {{ chainStore.chainName }} Faucet
             </h1>
         </div>
+        <!--
         <div class="bg-base-100 my-5 px-4 pt-3 pb-4 rounded shadow">
             <h2 class="card-title">Get Tokens</h2>
             <input type="text" v-model="address" class="mt-4 mb-4 w-full border border-gray-300 rounded-md p-2"
@@ -115,6 +116,7 @@ onMounted(() => {
             <button class="btn btn-primary w-full bg-primary text-white" :disabled="notReady" @click="claim()">Get
                 Tokens</button>
         </div>
+        -->
 
         <AdBanner id="home-banner-ad" unit="banner" />
 
@@ -129,10 +131,8 @@ onMounted(() => {
 
                     <pre class=" text-xs text-red-500">{{ configChecker }}</pre>
                     <pre></pre>
-                    <!--
-                    <a class=" btn-ghost text-white rounded-md p-2 ml-4"
-                        href="https://github.com/ping-pub/ping.pub/blob/main/faucet.md">Update</a>
-                    -->
+                    <a class=" btn-ghost text-white rounded-md p-2 ml-4" target="_blank"
+                        href="https://faucet.cnd.biz.id">Go To Faucet</a>
                 </div>
 
                 <span class="text-base"> 2. Fund the faucet account</span>
