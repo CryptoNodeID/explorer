@@ -15,7 +15,7 @@
     "assets": [{
         "base": "uward",
         "symbol": "WARD",
-        "exponent": "6",
+        "exponent": "32",
         "coingecko_id": "",
         "logo": "/logos/warden.png"
     }]
