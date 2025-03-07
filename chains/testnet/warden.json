@@ -13,9 +13,9 @@
     "addr_prefix": "warden",
     "logo": "/logos/warden.png",
     "assets": [{
-        "base": "uward",
+        "base": "award",
         "symbol": "WARD",
-        "exponent": "32",
+        "exponent": "18",
         "coingecko_id": "",
         "logo": "/logos/warden.png"
     }]
