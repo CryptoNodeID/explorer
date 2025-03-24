@@ -13,7 +13,7 @@
     "addr_prefix": "air",
     "logo": "/logos/airchain.png",
     "assets": [{
-        "base": "amf",
+        "base": "uamf",
         "symbol": "AMF",
         "exponent": "6", 
         "coingecko_id": "",
